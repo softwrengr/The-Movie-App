@@ -1,4 +1,4 @@
-package com.techease.themoviesapp;
+package com.techease.themoviesapp.views.fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.techease.themoviesapp.R;
 import com.techease.themoviesapp.adapters.MoviesAdapter;
 import com.techease.themoviesapp.models.Movie;
 import com.techease.themoviesapp.models.MoviesResponse;

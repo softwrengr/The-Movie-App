@@ -7,12 +7,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.techease.themoviesapp.R;
 import com.techease.themoviesapp.models.Movie;
+import com.techease.themoviesapp.utilities.GeneralUtils;
+import com.techease.themoviesapp.views.fragments.MovieDetailFragment;
 
 import java.util.List;
 
@@ -49,11 +54,20 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
     public void onBindViewHolder(@NonNull final MoviesAdapter.MyViewHolder viewHolder, final int position) {
         final Movie model = movieList.get(position);
 
-        String poster = "https://image.tmdb.org/t/p/w500" + movieList.get(position).getPosterPath();
+        viewHolder.tvTitle.setText(model.getTitle());
 
+        String poster = "https://image.tmdb.org/t/p/w500" + movieList.get(position).getPosterPath();
         Glide.with(context)
                 .load(poster)
                 .into(viewHolder.ivPoster);
+
+        viewHolder.movieLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GeneralUtils.putIntegerValueInEditor(context, "movie_id", model.getId());
+                GeneralUtils.connectFragementWithBack(context, new MovieDetailFragment());
+            }
+        });
 
 
     }
@@ -64,12 +78,15 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+        FrameLayout movieLayout;
         ImageView ivPoster;
+        TextView tvTitle;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             ivPoster = itemView.findViewById(R.id.iv_poster);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            movieLayout = itemView.findViewById(R.id.movies_layout);
 
         }
     }

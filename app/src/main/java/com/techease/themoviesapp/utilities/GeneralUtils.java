@@ -62,8 +62,8 @@ public class GeneralUtils {
         return getSharedPreferences(context).getBoolean("check_ad",false);
     }
 
-    public static int getImagePosition(Context context){
-        return getSharedPreferences(context).getInt("position",1);
+    public static int getMovieID(Context context){
+        return getSharedPreferences(context).getInt("movie_id",0);
     }
 
 
