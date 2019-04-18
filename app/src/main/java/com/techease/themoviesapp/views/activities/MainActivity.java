@@ -1,5 +1,6 @@
 package com.techease.themoviesapp.views.activities;
 
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -15,5 +16,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         GeneralUtils.connectFragmentWithoutBack(this,new MoviesFragment());
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+
+        }
+        else if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+
+        }
     }
 }

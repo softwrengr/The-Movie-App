@@ -19,6 +19,7 @@ import com.techease.themoviesapp.models.MoviesResponse;
 import com.techease.themoviesapp.networking.ApiClient;
 import com.techease.themoviesapp.networking.ApiInterface;
 import com.techease.themoviesapp.utilities.Configuration;
+import com.techease.themoviesapp.utilities.GeneralUtils;
 
 import org.json.JSONObject;
 
@@ -55,7 +56,8 @@ public class MoviesFragment extends Fragment {
     private void initUI() {
         ButterKnife.bind(this, view);
 
-        layoutManager = new GridLayoutManager(getActivity(), 3);
+        int mNoOfColumns = GeneralUtils.calculateNoOfColumns(getActivity(),120);
+        layoutManager = new GridLayoutManager(getActivity(), mNoOfColumns);
         gvWallpapers.setLayoutManager(layoutManager);
         movieList = new ArrayList<>();
 //        alertDialog = AlertUtils.createProgressDialog(getActivity());

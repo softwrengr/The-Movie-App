@@ -1,7 +1,5 @@
 package com.techease.themoviesapp.views.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -14,7 +12,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.techease.themoviesapp.R;
-import com.techease.themoviesapp.models.MoviesResponse;
 import com.techease.themoviesapp.models.allMoviesDetailsModels.MoviesDetailModel;
 import com.techease.themoviesapp.networking.ApiClient;
 import com.techease.themoviesapp.networking.ApiInterface;
@@ -22,6 +19,8 @@ import com.techease.themoviesapp.utilities.Configuration;
 import com.techease.themoviesapp.utilities.GeneralUtils;
 
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +42,12 @@ public class MovieDetailFragment extends Fragment {
     TextView tvLanguage;
     @BindView(R.id.tv_release_date)
     TextView tvReleaseDate;
+    @BindView(R.id.tv_generes)
+    TextView tvGeneres;
+
+    HashMap<Integer, String> hmGeneres;
+
+    StringBuilder builderGeneres;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +60,7 @@ public class MovieDetailFragment extends Fragment {
 
     private void initViews() {
         ButterKnife.bind(this, view);
+        hmGeneres = new HashMap<Integer, String>();
         apiCallGetMovies();
 
     }
@@ -82,7 +88,13 @@ public class MovieDetailFragment extends Fragment {
                     tvReleaseDate.setText(response.body().getReleaseDate());
 
                     for(int i=0;i<response.body().getGenres().size();i++){
-                        Toast.makeText(getActivity(), response.body().getGenres().get(i).getName(), Toast.LENGTH_SHORT).show();
+                        hmGeneres.put(response.body().getGenres().get(i).getId(), response.body().getGenres().get(i).getName());
+                        builderGeneres = new StringBuilder();
+                        for (String name : hmGeneres.values()) {
+                            builderGeneres.append(name + ",");
+                            tvGeneres.setText(builderGeneres);
+                        }
+
                     }
 
 

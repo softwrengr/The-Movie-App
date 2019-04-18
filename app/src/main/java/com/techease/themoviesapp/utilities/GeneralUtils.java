@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 
 import com.techease.themoviesapp.R;
 
@@ -64,6 +65,13 @@ public class GeneralUtils {
 
     public static int getMovieID(Context context){
         return getSharedPreferences(context).getInt("movie_id",0);
+    }
+
+    public static int calculateNoOfColumns(Context context, float columnWidthDp) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        float screenWidthDp = displayMetrics.widthPixels / displayMetrics.density;
+        int noOfColumns = (int) (screenWidthDp / columnWidthDp + 0.5);
+        return noOfColumns;
     }
 
 
