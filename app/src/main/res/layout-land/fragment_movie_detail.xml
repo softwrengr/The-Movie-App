@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text=""
-                android:fontFamily="@font/regular"
+                android:fontFamily="@font/poppins_medium"
                 android:textStyle="italic"
                 android:textSize="18sp"
                 android:textColor="@color/white" />

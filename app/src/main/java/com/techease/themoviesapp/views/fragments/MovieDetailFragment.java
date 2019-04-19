@@ -1,6 +1,7 @@
 package com.techease.themoviesapp.views.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -49,6 +50,8 @@ public class MovieDetailFragment extends Fragment {
 
     StringBuilder builderGeneres;
 
+    private MovieDetailFragment_ViewBinding movieDetail_viewBinding;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,11 +90,11 @@ public class MovieDetailFragment extends Fragment {
                     tvLanguage.setText(response.body().getSpokenLanguages().get(0).getName());
                     tvReleaseDate.setText(response.body().getReleaseDate());
 
-                    for(int i=0;i<response.body().getGenres().size();i++){
+                    for (int i = 0; i < response.body().getGenres().size(); i++) {
                         hmGeneres.put(response.body().getGenres().get(i).getId(), response.body().getGenres().get(i).getName());
                         builderGeneres = new StringBuilder();
                         for (String name : hmGeneres.values()) {
-                            builderGeneres.append(name + ",");
+                            builderGeneres.append(name + ", ");
                             tvGeneres.setText(builderGeneres);
                         }
 
@@ -110,5 +113,11 @@ public class MovieDetailFragment extends Fragment {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
     }
 }
