@@ -12,10 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.techease.themoviesapp.R;
 import com.techease.themoviesapp.models.allMoviesDetailsModels.MoviesDetailModel;
 import com.techease.themoviesapp.networking.ApiClient;
-import com.techease.themoviesapp.networking.ApiInterface;
+import com.techease.themoviesapp.networking.ApiServices;
 import com.techease.themoviesapp.utilities.Configuration;
 import com.techease.themoviesapp.utilities.GeneralUtils;
 
@@ -28,6 +29,7 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 
 public class MovieDetailFragment extends Fragment {
@@ -47,7 +49,6 @@ public class MovieDetailFragment extends Fragment {
     TextView tvGeneres;
 
     HashMap<Integer, String> hmGeneres;
-
     StringBuilder builderGeneres;
 
     private MovieDetailFragment_ViewBinding movieDetail_viewBinding;
@@ -70,7 +71,7 @@ public class MovieDetailFragment extends Fragment {
 
     private void apiCallGetMovies() {
 
-        ApiInterface services = ApiClient.getApiClient().create(ApiInterface.class);
+        ApiServices services = ApiClient.getApiClient().create(ApiServices.class);
         Call<MoviesDetailModel> allUsers = services.getMovieDetail(GeneralUtils.getMovieID(getActivity()), Configuration.API_TOKEN);
         allUsers.enqueue(new Callback<MoviesDetailModel>() {
             @Override
@@ -81,7 +82,7 @@ public class MovieDetailFragment extends Fragment {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
                         Toast.makeText(getActivity(), jObjError.getString("message"), Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
-                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Timber.e(e.getMessage());
                     }
 
                 } else {
@@ -110,7 +111,7 @@ public class MovieDetailFragment extends Fragment {
 
             @Override
             public void onFailure(Call<MoviesDetailModel> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Timber.e(t.getMessage());
             }
         });
 

@@ -10,9 +10,6 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by eapple on 29/08/2018.
- */
 
 public class ApiClient {
 

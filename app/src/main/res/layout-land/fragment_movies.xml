@@ -12,15 +12,26 @@
       <EditText
           android:id="@+id/et_search"
           android:layout_width="match_parent"
-          android:layout_height="40sp"
+          android:layout_height="wrap_content"
           android:paddingRight="20sp"
-          android:hint="Search"
+          android:hint="Search Movie"
           android:textColorHint="@color/white"
-          android:gravity="center"
+          android:drawablePadding="10sp"
           android:textColor="@color/white"
+          android:layout_toLeftOf="@id/iv_filter"
+          android:layout_marginRight="10sp"
           android:textCursorDrawable="@color/white"
           android:backgroundTint="@color/black"
-          android:drawableRight="@drawable/search"/>
+          android:drawableLeft="@drawable/search"/>
+
+      <ImageView
+          android:id="@+id/iv_filter"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/filter"
+          android:layout_alignParentEnd="true"
+          android:layout_marginTop="5sp"
+          android:layout_marginRight="10sp"/>
 
       <android.support.v7.widget.RecyclerView
           android:id="@+id/rv_movies"

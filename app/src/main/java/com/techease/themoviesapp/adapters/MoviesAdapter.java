@@ -11,13 +11,12 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.techease.themoviesapp.R;
-import com.techease.themoviesapp.models.Movie;
+import com.techease.themoviesapp.models.movieModel.Movie;
 import com.techease.themoviesapp.utilities.GeneralUtils;
 import com.techease.themoviesapp.views.fragments.MovieDetailFragment;
 
@@ -46,14 +45,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
         return new MoviesAdapter.MyViewHolder(itemView);
     }
 
-//    @Override
-//    public long getItemId(int position) {
-//        final Movie model = movieList.get(position);
-//        if (movieList != null && movieList.size() > position)
-//            return movieList.size();
-//        return 0;
-//    }
-
     @SuppressLint("ResourceType")
     @Override
     public void onBindViewHolder(@NonNull final MoviesAdapter.MyViewHolder viewHolder, final int position) {
@@ -61,7 +52,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
 
         viewHolder.tvTitle.setText(model.getTitle());
 
-        String poster = "https://image.tmdb.org/t/p/w500" + filterList.get(position).getPosterPath();
+        String poster = "https://image.tmdb.org/t/p/original" + filterList.get(position).getPosterPath();
         Glide.with(context)
                 .load(poster)
                 .into(viewHolder.ivPoster);
@@ -99,8 +90,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
                             filteredList.add(row);
                         }
                     }
-
-
                     filterList = filteredList;
                 }
 

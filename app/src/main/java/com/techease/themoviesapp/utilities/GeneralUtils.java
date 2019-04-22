@@ -9,7 +9,7 @@ import android.util.DisplayMetrics;
 import com.techease.themoviesapp.R;
 
 /**
- * Created by eapple on 30/10/2018.
+ * Created by eapple on 16/04/2019.
  */
 
 public class GeneralUtils {
@@ -52,15 +52,6 @@ public class GeneralUtils {
 
     public static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(Configuration.My_PREF, 0);
-    }
-
-    public static String getImageID(Context context){
-        return getSharedPreferences(context).getString("image_id","");
-    }
-
-
-    public static Boolean checkAd(Context context){
-        return getSharedPreferences(context).getBoolean("check_ad",false);
     }
 
     public static int getMovieID(Context context){

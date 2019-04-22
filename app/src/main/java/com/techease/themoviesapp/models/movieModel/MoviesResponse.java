@@ -1,7 +1,8 @@
-package com.techease.themoviesapp.models;
+package com.techease.themoviesapp.models.movieModel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.techease.themoviesapp.models.movieModel.Movie;
 
 import java.util.List;
 

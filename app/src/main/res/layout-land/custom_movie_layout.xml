@@ -29,6 +29,7 @@
                 android:textColor="@color/white"
                 android:maxLines="2"
                 android:layout_gravity="bottom"
+                android:fontFamily="@font/poppins_medium"
                 android:layout_marginLeft="10sp"/>
 
         </FrameLayout>
